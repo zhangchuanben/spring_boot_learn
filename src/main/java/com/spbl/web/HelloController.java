@@ -1,4 +1,4 @@
-package com.spbl.controller;
+package com.spbl.web;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
