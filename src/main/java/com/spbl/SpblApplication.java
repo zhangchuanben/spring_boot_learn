@@ -19,7 +19,6 @@ public class SpblApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		
 		System.out.println("The number of books:"+bookRepository.count());
 	}
 }
