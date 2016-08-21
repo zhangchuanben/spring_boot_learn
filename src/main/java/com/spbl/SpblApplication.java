@@ -1,22 +1,22 @@
 package com.spbl;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.spbl.repository.BookRepository;
+
 @SpringBootApplication
 public class SpblApplication implements CommandLineRunner{
 	@Autowired
-	private DataSource ds;
+	private BookRepository bookRepository;
 	public static void main(String[] args) {
 		SpringApplication.run(SpblApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println(ds.toString());
+		System.out.println("The number of books:"+bookRepository.count());
 	}
 }
