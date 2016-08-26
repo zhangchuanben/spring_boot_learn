@@ -1,6 +1,10 @@
 package com.spbl.config;
 
+import java.util.concurrent.TimeUnit;
+
 import org.apache.catalina.filters.RemoteIpFilter;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -34,6 +38,19 @@ public class WebConfiguration extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/internal/**")
 				.addResourceLocations("classpath:/");
+	}
+	
+	// change server properties
+	@Bean
+	public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
+		return new EmbeddedServletContainerCustomizer() {
+
+			@Override
+			public void customize(ConfigurableEmbeddedServletContainer container) {
+				container.setSessionTimeout(1, TimeUnit.MINUTES);
+			}
+			
+		};
 	}
 	
 	

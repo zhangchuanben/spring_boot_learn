@@ -1,5 +1,7 @@
 package com.spbl.web;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,10 @@ public class BookController {
 	@RequestMapping(value = "/{isbn}", method = RequestMethod.GET)
 	public Book getByIsbn(@PathVariable String isbn) {
 		return bookRepository.findByIsbn(isbn);
+	}
+	
+	@RequestMapping(value = "/session", method = RequestMethod.GET)
+	public String getSessionId(HttpServletRequest request) {
+		return request.getSession().getId();
 	}
 }
