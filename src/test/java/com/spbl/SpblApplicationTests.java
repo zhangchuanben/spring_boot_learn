@@ -1,6 +1,7 @@
 package com.spbl;
 
 import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,14 +10,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.spbl.domain.Book;
 import com.spbl.repository.BookRepository;
 
 @RunWith(SpringRunner.class)
@@ -40,15 +39,14 @@ public class SpblApplicationTests {
 	@Rollback // 支持事务回滚
 	@Test
 	public void contextLoads() {
-		/*Iterable<Book> books = repository.findAll();
-		books.forEach(book -> {
-			repository.delete(book);
-		});*/
+		//repository.findAll().forEach(repository::delete);
 		/*Book book = new Book();
 		book.setDescription("哈利波特");
 		book.setIsbn("abcd");
 		book.setTitle("哈利波特全集");
 		repository.save(book);*/
+		
+		
 		assertEquals(1, repository.count());
 	}
 
