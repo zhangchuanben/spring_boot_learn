@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.spbl.domain.Book;
 import com.spbl.repository.BookRepository;
 
 @RunWith(SpringRunner.class)
@@ -48,6 +49,16 @@ public class SpblApplicationTests {
 		
 		
 		assertEquals(1, repository.count());
+	}
+	
+	
+	// 请求测试
+	@Test
+	public void webappBookIsbnApi() {
+		Book book = restTemplate.getForObject("http://localhost:"+port+
+				"/books/abcd", Book.class);
+		assertNotNull(book);
+		assertEquals("哈利波特全集", book.getTitle());
 	}
 
 }
